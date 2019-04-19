@@ -1,0 +1,50 @@
+@author: yangjing
+@contact: 
+@file: excel_csv
+@time: 2019/4/9 14:05
+@desc:
+"""
+import csv
+import xlrd
+
+'''
+获取excel中内容，返回list
+'''
+class Getexcel():
+    def __init__(self,file_path):
+        self.file_path = file_path
+
+
+    def get_excel_list(self):
+        # os.path.dirname()
+        data = xlrd.open_workbook(self.file_path)
+        table = data.sheets()[0]
+        nrows = table.nrows
+        excel_data = []
+        for row in range(nrows):
+            excel_data.append(table.row_values(row))
+        return excel_data
+
+
+'''
+转化成csv文件
+'''
+class WriterCsv():
+    def __init__(self,csv_path,excel_data):
+        self.csv_path = csv_path
+        self.excel_data = excel_data
+
+    def writercsv(self):
+        with open(self.csv_path, 'w', encoding='gbk', newline='') as f:
+            writer = csv.writer(f)
+            for i in self.excel_data:
+                writer.writerow(i)
+
+
+if __name__ == '__main__':
+    file_path = 'D:\\yj\\csv\\csv\\resource\\Winbitex.xlsx'
+    csv_path = 'D:\\yj\\csv\\csv\\resource\\Winbitex.csv'
+    getexcel = Getexcel(file_path)
+    data = getexcel.get_excel_list()
+    writercsv = WriterCsv(csv_path,data)
+    writercsv.writercsv()
