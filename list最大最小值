@@ -1,0 +1,15 @@
+import math
+
+def findMinAndMax(L):
+    max = min = L[0]
+    for i in range(1,len(L)):
+        if max >= L[i]:
+            max = L[i]
+        else:
+            min = L[i]
+    print((max,min))
+    return (max,min)
+
+findMinAndMax('acdv')
+
+
