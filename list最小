@@ -1,0 +1,16 @@
+
+L1 = ['Hello', 'World', 18, 'Apple', None]
+L2 = []
+L3 = []
+for i in range(len(L1)):
+    if isinstance(L1[i],str):
+        L2.append(L1[i])
+    else:
+        L3.append(i)
+
+L4 = [s.lower() for s in L2]
+
+for i in L3:
+    L4.insert(i,L1[i])
+    
+print(L4)
