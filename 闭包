@@ -1,0 +1,17 @@
+//调用依次递增
+def count():
+    fs = []
+    def f(n):
+        def j():
+            return n+1
+        return j
+    for i in range(1, 5):
+        fs.append(f(i))
+    return fs
+
+f1, f2, f3,f4 = count()
+
+print(f1())
+print(f2())
+print(f3())
+print(f4())
