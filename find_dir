@@ -1,0 +1,19 @@
+# coding: utf-8
+import os
+import logging
+import re
+def find_file(path,name):
+    logging.basicConfig(level=logging.DEBUG)
+    result = []
+    #logging.debug(os.path.abspath('.'))
+    for i in os.listdir(path):
+        if os.path.isdir(i):
+            find_file(i,name)
+        if os.path.isfile(i):
+            file_name = os.path.splitext(i)
+            result_f = re.search(name,file_name[0])
+            if result_f is not None:
+                result.append(i)
+                logging.debug(i)
+    return result
+print(find_file('.','test'))
